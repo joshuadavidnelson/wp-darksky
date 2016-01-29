@@ -35,15 +35,15 @@ class Forecast {
 	 * @since 1.0.0
 	 */
 	private $defaults = array(
-		'api_key'		=> null,
-		'latitude'		=> null,
-		'longitude'		=> null,
-		'time'			=> null,
+		'api_key'	=> null,
+		'latitude'	=> null,
+		'longitude'	=> null,
+		'time'		=> null,
 		'cache_prefix'	=> 'forecast_api_request_',
 		'cache_enabled'	=> true,
 		'cache_time'	=> 6 * HOUR_IN_SECONDS,
 		'clear_cache'	=> false, // set to true to force the cache to clear
-		'query'			=> array(),
+		'query'		=> array(),
 	);
 	
 	/**
@@ -63,7 +63,12 @@ class Forecast {
 	/**
 	 * Build it.
 	 * 
+	 * @uses wp_array_slice_assoc()
+	 * @uses wp_parse_args()
+	 * 
 	 * @since 1.0.0
+	 * 
+	 * @param array $args The array of arguments.
 	 */
 	public function __construct( $args = array() ) {
 		
@@ -82,13 +87,17 @@ class Forecast {
 		$this->request_url = self::API_ENDPOINT . esc_attr( $this->api_key ) . '/' . floatval( $this->latitude ) . ',' . floatval( $this->longitude ) . ( ( is_null( $this->time ) ) ? '' : ','. $this->time ) . $query;
 		
 		// Get and save the response
-		$this->response = $this->get_response();
+		$this->response = $this->get_response( $this->clear_cache );
 	}
 	
 	/**
 	 * Set the transient name.
 	 * 
 	 * @since 1.0.0
+	 * 
+	 * @param string $url The request url.
+	 * 
+	 * @return string $transient_name
 	 */
 	private function transient_name( $url ) {
 		return $this->cache_prefix . md5( $url );
@@ -97,14 +106,26 @@ class Forecast {
 	/**
 	 * Get the response, either via a transient or via a call.
 	 * 
+	 * @uses get_transient()
+	 * @uses set_transient()
+	 * 
 	 * @since 1.0.0
+	 * 
+	 * @param boolean $clear_cache Set true to reset the transient.
+	 * 
+	 * @return array $response
 	 */
-	public function get_response() {
+	public function get_response( $clear_cache = false ) {
+		
+		// If caching is enabled, let's check the cache.
 		if( $this->cache_enabled ) {
+			
+			// Get the transient
 			$transient_name = $this->transient_name( $this->request_url );
 			$transient = get_transient( $transient_name );
 			
-			if( ! $transient || $this->clear_cache ) {
+			// Grab the response
+			if( ! $transient || $clear_cache ) {
 				$response = $this->request();
 				
 				if( $response )
@@ -113,12 +134,24 @@ class Forecast {
 			} else {
 				$response = $transient;
 			}
-			
+		
+		// If no caching, just grab the response.
 		} else {
 			$response = $this->request();
 		}
 		
 		return $response;
+	}
+	
+	/**
+	 * Refresh the response, returns a new API response.
+	 * 
+	 * @since 1.0.0
+	 * 
+	 * @return array $response
+	 */
+	public function refresh_response() {
+		return $this->get_response( true );
 	}
 	
 	/**
@@ -128,7 +161,9 @@ class Forecast {
 	 * @uses wp_remote_retrieve_body
 	 * 
 	 * @since 1.0.0
-	**/
+	 * 
+	 * return array $json The JSON response.
+	 */
 	private function request() {
 		
 		$response = wp_remote_get( esc_url( $this->request_url ) );
@@ -145,6 +180,10 @@ class Forecast {
 	 * Magical method to grab either a response argument or a class argument.
 	 * 
 	 * @since 1.0.0
+	 * 
+	 * @param string $property
+	 * 
+	 * @return mixed 
 	 */
 	public function __get( $property ) {
 		// check if the property exists in the response first
@@ -162,11 +201,21 @@ class Forecast {
 	}
 	
 	/**
-	 * Set a class argument with the matgic method.
+	 * Set a class argument with the magic method.
 	 * 
 	 * @since 1.0.0
+	 * 
+	 * @param string $key The argument key.
+	 * @param mixed $value The argument value, typically a string or array.
+	 * 
+	 * @return mixed $value The updated value, false on failure.
 	 */
 	public function __set( $key, $value ) {
-		return $this->args[ $key ];
+		if( array_key_exists( $key, $this->args ) ) {
+			$this->args[ $key ] = $value;
+			return $this->args[ $key ];
+		} else {
+			return false;
+		}
 	}
 }
