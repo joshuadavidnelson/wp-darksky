@@ -31,10 +31,10 @@ $args = array(
 $forecast = new Forecast\Forecast( $args );
 
 // Get the current forecast data for the daily forecast, which provides the next 7 days
-$daily = isset( $forecast->daily['data'] ) ? $forecast->daily['data'] : '';
+$daily = isset( $forecast->daily['data'] ) ? $forecast->daily['data'] : false;
 
 // Pull out the current day's forecast
-if( is_array( $daily ) ) {
+if( $daily ) {
 	$date_format = 'n/j/Y';
 	$time_now = date( $date_format, current_time( 'timestamp' ) );
 	foreach( $daily as $day ) {
