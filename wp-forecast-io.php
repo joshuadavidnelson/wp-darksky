@@ -135,7 +135,7 @@ class Forecast {
 		try {
 			$json = json_decode( wp_remote_retrieve_body( $response ), true );
 		} catch ( Exception $ex ) {
-			$json = null;
+			$json = array();
 		}
 		
 		return $json;
