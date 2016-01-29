@@ -45,3 +45,5 @@ if( is_array( $daily ) ) {
 	}
 }
 ```
+
+The above will result with a min / max temperature forecast for the current day, similar to: 45 / 70 &deg;. You can take any element of the Forecast response in a similar fashion and output into your site.
