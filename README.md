@@ -8,14 +8,13 @@ See more about the API in the [Forecast API Documentation](https://developer.for
 You can call this class and output the data of the response fairly easily. Here's an example of a call to get the current day's temperature.
 
 ```php
-
 $args = array(
-	'api_key' 	=> $api_key,
-	'latitude'	=> $lat,
-	'longitude'	=> $long,
+	'api_key' 	=> '', // Enter your API key
+	'latitude'	=> '', // enter the longitude
+	'longitude'	=> '', // enter the latitude
 	'query'		=> array( 'units' => 'us', 'exclude' => 'flags' )
 );
-$forecast = new Chelan\Forecast( $args );
+$forecast = new Forecast\Forecast( $args );
 
 // Get the current forecast data for the daily forecast, which provides the next 7 days
 $daily = isset( $forecast->daily['data'] ) ? $forecast->daily['data'] : '';
