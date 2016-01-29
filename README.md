@@ -3,6 +3,20 @@ A helper class for using forecast.io in WordPress. Requires a latitude, longitud
 
 See more about the API in the [Forecast API Documentation](https://developer.forecast.io/docs/v2).
 
+#### Arguments
+
+There are a few arguments available with this class to extend it further. 
+
+- `api_key` This is required, sign up for one at https://developer.forecast.io/
+- `latitude` Required.
+- `longitude` Required.
+- `time`	Optional. Pass a timestamp for the forecast at a specific time.
+- `cache_prefix` The transient prefix, defaults to 'forecast_api_request_'.
+- `cache_enabled`	Boolean, default to true.
+- `cache_time` Time to store the transient in seconds, defaults to 6 hours.
+- `clear_cache` Boolean, default false. Set to true to force the cache to clear.
+- `query`	An array of url query arguments, refer to the Forecast.io documentation.
+
 #### Example
 
 You can call this class and output the data of the response fairly easily. Here's an example of a call to get the current day's temperature.
