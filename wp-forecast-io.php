@@ -1,6 +1,6 @@
 <?php
 /**
- * A helper class for the forecast.io app.
+ * A helper class for the forecast.io api.
  *
  * Inspired by forecast-php by Guilherm Uhelski: https://github.com/guhelski/forecast-php
  *
@@ -9,6 +9,8 @@
  * @version 1.0.0
  *
  * @author Joshua David Nelson, josh@joshuadnelson.com
+ * 
+ * @license GPL v2.0+
  */
 
 namespace Forecast;
@@ -38,10 +40,10 @@ class Forecast {
 		'api_key'	=> null,
 		'latitude'	=> null,
 		'longitude'	=> null,
-		'time'		=> null,
+		'time'		=> null, // Time in seconds
 		'cache_prefix'	=> 'api_', // careful here, with md5 you are limited to 8 characters before the combined total exceeds the transient name limit
 		'cache_enabled'	=> true,
-		'cache_time'	=> 6 * HOUR_IN_SECONDS,
+		'cache_time'	=> 6 * HOUR_IN_SECONDS, // Time in seconds
 		'clear_cache'	=> false, // set to true to force the cache to clear
 		'query'		=> array(),
 	);
