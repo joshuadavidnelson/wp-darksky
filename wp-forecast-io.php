@@ -39,7 +39,7 @@ class Forecast {
 		'latitude'	=> null,
 		'longitude'	=> null,
 		'time'		=> null,
-		'cache_prefix'	=> 'forecast_api_request_',
+		'cache_prefix'	=> 'api_', // careful here, with md5 you are limited to 8 characters before the combined total exceeds the transient name limit
 		'cache_enabled'	=> true,
 		'cache_time'	=> 6 * HOUR_IN_SECONDS,
 		'clear_cache'	=> false, // set to true to force the cache to clear
