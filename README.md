@@ -15,7 +15,7 @@ There are a few arguments available with this class to extend it further.
 - `latitude` Required.
 - `longitude` Required.
 - `time`	Optional. Pass a timestamp for the forecast at a specific time.
-- `cache_prefix` The transient prefix, defaults to 'forecast_api_request_'.
+- `cache_prefix` The transient prefix, defaults to 'api_'. Note that the transient name is this prefix plus an [md5](http://php.net/manual/en/function.md5.php) on the request url, so you're limited to an 8 character limit on the prefix or the transient will not save.
 - `cache_enabled`	Boolean, default to true.
 - `cache_time` Time to store the transient in seconds, defaults to 6 hours.
 - `clear_cache` Boolean, default false. Set to true to force the cache to clear.
