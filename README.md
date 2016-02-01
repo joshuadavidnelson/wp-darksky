@@ -3,6 +3,10 @@ A helper class for using forecast.io in WordPress. Requires a latitude, longitud
 
 See more about the API in the [Forecast API Documentation](https://developer.forecast.io/docs/v2).
 
+**Minimum PHP:** PHP 5.3.0
+
+**Minimum WordPress:** 3.1.0
+
 #### Arguments
 
 There are a few arguments available with this class to extend it further. 
