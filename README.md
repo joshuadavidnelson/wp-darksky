@@ -51,3 +51,11 @@ if( $daily ) {
 ```
 
 The above will result with a min / max temperature forecast for the current day, similar to: 45 / 70 &deg;. You can take any element of the Forecast response in a similar fashion and output into your site.
+
+#### Want more?
+
+See the collection of examples in [this gist](https://gist.github.com/joshuadavidnelson/d6fa0c17faf3f0ea0192), as well as a basic Walkthrough in this [post](https://joshuadnelson.com/weather-in-wordpress-with-forecast-io/).
+
+##### Weather Icons
+
+Integrate [Eric Flowers'](https://github.com/erikflowers) awesome [Weather Icons](https://github.com/erikflowers/weather-icons) with this handy [helper class](https://gist.github.com/joshuadavidnelson/12e9915ad81d62a6991c).
