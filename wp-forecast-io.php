@@ -4,7 +4,9 @@
  *
  * Inspired by forecast-php by Guilherm Uhelski: https://github.com/guhelski/forecast-php
  *
- * @link https://developer.forecast.io/docs/v2
+ * @see https://developer.forecast.io/docs/v2
+ * 
+ * @link https://github.com/joshuadavidnelson/wp-forecast-io
  *
  * @version 1.0.0
  *
