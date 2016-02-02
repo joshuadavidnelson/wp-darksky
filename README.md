@@ -1,4 +1,7 @@
 # WP-Forecast-io
+
+***The development branch is not reccommended for production and may not work out-of-the-box. Please use the master branch.***
+
 A helper class for using forecast.io in WordPress. Requires a latitude, longitude, and Forecast.io API Key. It's set up to use a transient by default, refreshed every 6 hours, to limit the number of API calls made in a day (the first 1,000/day are free).
 
 See more about the API in the [Forecast API Documentation](https://developer.forecast.io/docs/v2).
