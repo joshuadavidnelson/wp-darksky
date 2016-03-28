@@ -45,7 +45,7 @@ class Forecast {
 		'time'		=> null, // Time in seconds
 		'cache_prefix'	=> 'api_', // careful here, md5 is used on the request url to generate the transient name. You are limited to an 8 character prefix before the combined total exceeds the transient name limit
 		'cache_enabled'	=> true,
-		'cache_time'	=> 6 * HOUR_IN_SECONDS, // Time in seconds
+		'cache_time'	=> (6 * HOUR_IN_SECONDS), // Time in seconds
 		'clear_cache'	=> false, // set to true to force the cache to clear
 		'query'		=> array(),
 	);
