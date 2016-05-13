@@ -170,7 +170,7 @@ class Forecast {
 	 */
 	private function request() {
 		
-		$response = wp_remote_get( esc_url( $this->request_url ) );
+		$response = wp_remote_get( $this->request_url );
 		try {
 			$json = json_decode( wp_remote_retrieve_body( $response ), true );
 		} catch ( Exception $ex ) {
