@@ -58,13 +58,6 @@ class Forecast {
 	public $request_url;
 	
 	/**
-	 * The hashed transient name.
-	 *
-	 * @since 1.0.0
-	 */
-	private $transient_name;
-
-	/**
 	 * The stored response.
 	 * 
 	 * @since 1.0.0
