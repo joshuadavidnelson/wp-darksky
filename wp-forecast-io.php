@@ -140,7 +140,7 @@ class Forecast {
 				$response = $this->request();
 				
 				if( $response )
-					set_transient( $this->transient_name, $response, $this->cache_time );
+					set_transient( $transient_name, $response, $this->cache_time );
 				
 			} else {
 				$response = $transient;
