@@ -1,10 +1,12 @@
-# WP-Forecast-io
+# WP-DarkSky
 
 ***The development branch is not reccommended for production and may not work out-of-the-box. Please use the master branch.***
 
-A helper class for using forecast.io in WordPress. Requires a latitude, longitude, and Forecast.io API Key. It's set up to use a transient by default, refreshed every 6 hours, to limit the number of API calls made in a day (the first 1,000/day are free).
+A helper class for using darksky.net in WordPress. Requires a latitude, longitude, and Dark Sky API Key. It's set up to use a transient by default, refreshed every 6 hours, to limit the number of API calls made in a day (the first 1,000/day are free).
 
-See more about the API in the [Forecast API Documentation](https://developer.forecast.io/docs/v2).
+See more about the API in the [Dark Sky API Documentation](https://darksky.net/dev/docs).
+
+**Current Version:** 1.1.0
 
 **Minimum PHP:** PHP 5.3.0
 
@@ -14,7 +16,7 @@ See more about the API in the [Forecast API Documentation](https://developer.for
 
 There are a few arguments available with this class to extend it further. 
 
-- `api_key` This is required, sign up for one at https://developer.forecast.io/
+- `api_key` This is required, sign up for one at https://darksky.net/dev/register
 - `latitude` Required.
 - `longitude` Required.
 - `time`	Optional. Pass a timestamp for the forecast at a specific time.
@@ -22,7 +24,7 @@ There are a few arguments available with this class to extend it further.
 - `cache_enabled`	Boolean, default to true.
 - `cache_time` Time to store the transient in seconds, defaults to 6 hours.
 - `clear_cache` Boolean, default false. Set to true to force the cache to clear.
-- `query`	An array of url query arguments, refer to the Forecast.io documentation.
+- `query`	An array of url query arguments, refer to the Dark Sky API documentation.
 
 #### Example
 
@@ -35,7 +37,7 @@ $args = array(
 	'longitude'	=> '', // enter the latitude
 	'query'		=> array( 'units' => 'us', 'exclude' => 'flags' )
 );
-$forecast = new Forecast\Forecast( $args );
+$forecast = new DarkSky\Forecast( $args );
 
 // Get the current forecast data for the daily forecast, which provides the next 7 days
 $daily = isset( $forecast->daily['data'] ) ? $forecast->daily['data'] : false;

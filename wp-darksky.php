@@ -1,30 +1,31 @@
 <?php
 /**
- * A helper class for the forecast.io api.
+ * A helper class for the darksky.net API.
  *
  * Inspired by forecast-php by Guilherm Uhelski: https://github.com/guhelski/forecast-php
  *
- * @see https://developer.forecast.io/docs/v2
+ * @see https://darksky.net/dev/docs
  * 
- * @link https://github.com/joshuadavidnelson/wp-forecast-io
+ * @link https://github.com/joshuadavidnelson/wp-darksky
  *
- * @version 1.0.0
+ * @version 1.1.0
  *
  * @author Joshua David Nelson, josh@joshuadnelson.com
  * 
  * @license GPL v2.0+
  */
 
-namespace Forecast;
+namespace DarkSky;
 
 class Forecast {
 	
 	/**
-	 * The forecast API base url.
+	 * The API base url.
 	 * 
 	 * @since 1.0.0
+	 * @since 1.1.0 - Updated to Dark Sky API from Forecast.io
 	 */
-	const API_ENDPOINT = 'https://api.forecast.io/forecast/';
+	const API_ENDPOINT = 'https://api.darksky.net/forecast/';
 	
 	/**
 	 * The arguments.
@@ -45,7 +46,7 @@ class Forecast {
 		'time'		=> null, // Time in seconds
 		'cache_prefix'	=> 'api_', // careful here, md5 is used on the request url to generate the transient name. You are limited to an 8 character prefix before the combined total exceeds the transient name limit
 		'cache_enabled'	=> true,
-		'cache_time'	=> 6 * HOUR_IN_SECONDS, // Time in seconds
+		'cache_time'	=> 21600, // Time in seconds, defaults to 6 hours
 		'clear_cache'	=> false, // set to true to force the cache to clear
 		'query'		=> array(),
 	);
@@ -133,7 +134,7 @@ class Forecast {
 				$response = $this->request();
 				
 				if( $response )
-					set_transient( $this->transient_name, $response, $this->cache_time );
+					set_transient( $transient_name, $response, $this->cache_time );
 				
 			} else {
 				$response = $transient;
@@ -170,7 +171,7 @@ class Forecast {
 	 */
 	private function request() {
 		
-		$response = wp_remote_get( esc_url( $this->request_url ) );
+		$response = wp_remote_get( esc_url($this->request_url, 'https', 'api') );
 		try {
 			$json = json_decode( wp_remote_retrieve_body( $response ), true );
 		} catch ( Exception $ex ) {
