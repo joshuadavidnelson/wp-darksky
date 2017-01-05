@@ -24,7 +24,7 @@ class Forecast {
 	 * 
 	 * @since 1.0.0
 	 */
-	const API_ENDPOINT = 'https://api.forecast.io/forecast/';
+	const API_ENDPOINT = 'https://api.darksky.net/forecast/';
 	
 	/**
 	 * The arguments.
