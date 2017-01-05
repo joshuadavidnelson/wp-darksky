@@ -1,28 +1,29 @@
 <?php
 /**
- * A helper class for the forecast.io api.
+ * A helper class for the darksky.net API.
  *
  * Inspired by forecast-php by Guilherm Uhelski: https://github.com/guhelski/forecast-php
  *
- * @see https://developer.forecast.io/docs/v2
+ * @see https://darksky.net/dev/docs
  * 
- * @link https://github.com/joshuadavidnelson/wp-forecast-io
+ * @link https://github.com/joshuadavidnelson/wp-darksky
  *
- * @version 1.0.0
+ * @version 1.1.0
  *
  * @author Joshua David Nelson, josh@joshuadnelson.com
  * 
  * @license GPL v2.0+
  */
 
-namespace Forecast;
+namespace DarkSky;
 
 class Forecast {
 	
 	/**
-	 * The forecast API base url.
+	 * The API base url.
 	 * 
 	 * @since 1.0.0
+	 * @since 1.1.0 - Updated to Dark Sky API from Forecast.io
 	 */
 	const API_ENDPOINT = 'https://api.darksky.net/forecast/';
 	
