@@ -85,8 +85,11 @@ class Forecast {
 		$args = wp_array_slice_assoc( $args, $limit_keys );
 		$this->args = wp_parse_args( $args, $this->defaults );
 		
-		// Build the query arguments for the forecast url
-		$query = ( !empty( $this->query ) && is_array( $this->query ) ) ? '?'. http_build_query( $this->query ) : '';
+		// Build the query string for the forecast url
+		$query_string = is_array( $this->query ) ? http_build_query( $this->query ) : '';
+		
+		// if we have a query string, set it up for the url
+		$query = !empty( $query_string ) ? '?' .$query_string : '';
 		
 		// Build the request url
 		$this->request_url = self::API_ENDPOINT . esc_attr( $this->api_key ) . '/' . floatval( $this->latitude ) . ',' . floatval( $this->longitude ) . ( ( is_null( $this->time ) ) ? '' : ','. $this->time ) . $query;
