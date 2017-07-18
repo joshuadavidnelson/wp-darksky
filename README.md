@@ -3,7 +3,7 @@ A helper class for using darksky.net in WordPress. Requires a latitude, longitud
 
 See more about the API in the [Dark Sky API Documentation](https://darksky.net/dev/docs).
 
-**Current Version:** 1.1.0
+**Current Version:** 1.1.1
 
 **Minimum PHP:** PHP 5.3.0
 

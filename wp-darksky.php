@@ -8,7 +8,7 @@
  * 
  * @link https://github.com/joshuadavidnelson/wp-darksky
  *
- * @version 1.1.0
+ * @version 1.1.1
  *
  * @author Joshua David Nelson, josh@joshuadnelson.com
  * 
@@ -40,15 +40,15 @@ class Forecast {
 	 * @since 1.0.0
 	 */
 	private $defaults = array(
-		'api_key'	=> null,
-		'latitude'	=> null,
-		'longitude'	=> null,
-		'time'		=> null, // Time in seconds
+		'api_key'		=> null,
+		'latitude'		=> null,
+		'longitude'		=> null,
+		'time'			=> null, // Time in seconds
 		'cache_prefix'	=> 'api_', // careful here, md5 is used on the request url to generate the transient name. You are limited to an 8 character prefix before the combined total exceeds the transient name limit
 		'cache_enabled'	=> true,
 		'cache_time'	=> 21600, // Time in seconds, defaults to 6 hours
 		'clear_cache'	=> false, // set to true to force the cache to clear
-		'query'		=> array(),
+		'query'			=> array(),
 	);
 	
 	/**
@@ -85,8 +85,11 @@ class Forecast {
 		$args = wp_array_slice_assoc( $args, $limit_keys );
 		$this->args = wp_parse_args( $args, $this->defaults );
 		
-		// Build the query arguments for the forecast url
-		$query = ( !empty( $this->query ) && is_array( $this->query ) ) ? '?'. http_build_query( $this->query ) : '';
+		// Build the query string for the forecast url
+		$query_string = is_array( $this->query ) ? http_build_query( $this->query ) : '';
+		
+		// if we have a query string, set it up for the url
+		$query = !empty( $query_string ) ? '?' .$query_string : '';
 		
 		// Build the request url
 		$this->request_url = self::API_ENDPOINT . esc_attr( $this->api_key ) . '/' . floatval( $this->latitude ) . ',' . floatval( $this->longitude ) . ( ( is_null( $this->time ) ) ? '' : ','. $this->time ) . $query;
