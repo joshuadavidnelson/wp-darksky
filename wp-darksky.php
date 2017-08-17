@@ -86,7 +86,7 @@ class Forecast {
 		$this->args = wp_parse_args( $args, $this->defaults );
 		
 		// Build the query string for the forecast url
-		$query_string = is_array( $this->query ) ? http_build_query( $this->query ) : '';
+		$query_string = is_array( $this->args['query'] ) ? http_build_query( $this->args['query'] ) : '';
 		
 		// if we have a query string, set it up for the url
 		$query = !empty( $query_string ) ? '?' .$query_string : '';
