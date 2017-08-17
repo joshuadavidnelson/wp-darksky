@@ -56,7 +56,7 @@ class Forecast {
 	 * 
 	 * @since 1.0.0
 	 */
-	public $request_url;
+	public $request_url = '';
 	
 	/**
 	 * The stored response.
@@ -77,6 +77,7 @@ class Forecast {
 	 */
 	public function __construct( $args = array() ) {
 		
+		// Make sure we have valid arguments
 		if( ! isset( $args['api_key'], $args['latitude'], $args['longitude'] ) )
 			return false;
 		
@@ -96,6 +97,7 @@ class Forecast {
 		
 		// Get and save the response
 		$this->response = $this->get_response( $this->clear_cache );
+		
 	}
 	
 	/**
