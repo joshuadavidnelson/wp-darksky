@@ -8,7 +8,7 @@
  * 
  * @link https://github.com/joshuadavidnelson/wp-darksky
  *
- * @version 1.1.1
+ * @version 1.1.2
  *
  * @author Joshua David Nelson, josh@joshuadnelson.com
  * 
@@ -56,7 +56,7 @@ class Forecast {
 	 * 
 	 * @since 1.0.0
 	 */
-	public $request_url;
+	public $request_url = '';
 	
 	/**
 	 * The stored response.
@@ -77,6 +77,7 @@ class Forecast {
 	 */
 	public function __construct( $args = array() ) {
 		
+		// Make sure we have valid arguments
 		if( ! isset( $args['api_key'], $args['latitude'], $args['longitude'] ) )
 			return false;
 		
@@ -86,7 +87,7 @@ class Forecast {
 		$this->args = wp_parse_args( $args, $this->defaults );
 		
 		// Build the query string for the forecast url
-		$query_string = is_array( $this->query ) ? http_build_query( $this->query ) : '';
+		$query_string = is_array( $this->args['query'] ) ? http_build_query( $this->args['query'] ) : '';
 		
 		// if we have a query string, set it up for the url
 		$query = !empty( $query_string ) ? '?' .$query_string : '';
@@ -96,6 +97,7 @@ class Forecast {
 		
 		// Get and save the response
 		$this->response = $this->get_response( $this->clear_cache );
+		
 	}
 	
 	/**

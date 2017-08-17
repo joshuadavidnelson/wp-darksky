@@ -1,5 +1,8 @@
 # Changelog
 
+#### 1.1.2 - 08/17/2017 - Fixed Query Variable Issue
+Per #12: Fixed the query variable from`$this->query` (which didn't work, really) to `$this->args['query']`. 
+
 #### 1.1.1 - 07/17/2017 - Fix Issue Causing Query To Be Ignored
 Per #10: Expanded the code for checking the query array and query string separately. The previous condensed version was causing the HTTP query parameters to be omitted in the final API Request URL.
 
