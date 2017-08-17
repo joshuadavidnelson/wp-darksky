@@ -8,7 +8,7 @@
  * 
  * @link https://github.com/joshuadavidnelson/wp-darksky
  *
- * @version 1.1.1
+ * @version 1.1.2
  *
  * @author Joshua David Nelson, josh@joshuadnelson.com
  * 
