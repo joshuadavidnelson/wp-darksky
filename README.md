@@ -3,10 +3,10 @@ A helper class for using darksky.net in WordPress. Requires a latitude, longitud
 
 See more about the API in the [Dark Sky API Documentation](https://darksky.net/dev/docs).
 
-### Notice: DarkSky API is closing ###
+### Notice: DarkSky API closed ###
 Dark Sky announced on March 31, 2020 that the company was acquired by Apple and the API is now closed to new signups. It will continue to be supported for existing accounts through the end of 2021. More information [here](https://blog.darksky.net/).
 
-Due to these circumstances, this project will remain available until the API is phased out and then be put on archive status. No further support will be provided.
+Due to these circumstances, this project has been archived. No further support will be provided.
 
 **Current Version:** 1.1.1
 
